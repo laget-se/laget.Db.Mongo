@@ -1,5 +1,5 @@
 ﻿# laget.Db.Mongo
-
+A generic implementation of MongoDB, a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas.
 
 ## Usage
 ```c#
