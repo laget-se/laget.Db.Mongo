@@ -12,6 +12,7 @@ namespace laget.Db.Mongo
         Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filter);
 
         TEntity Get(string id);
+        Task<TEntity> GetAsync(string id);
         TEntity Get(FilterDefinition<TEntity> filter);
         Task<TEntity> GetAsync(FilterDefinition<TEntity> filter);
 
@@ -62,6 +63,13 @@ namespace laget.Db.Mongo
             var filter = Builders<TEntity>.Filter.Eq(x => x.Id, id);
 
             return Collection.Find(filter).FirstOrDefault();
+        }
+
+        public virtual async Task<TEntity> GetAsync(string id)
+        {
+            var filter = Builders<TEntity>.Filter.Eq(x => x.Id, id);
+
+            return await Collection.Find(filter).FirstOrDefaultAsync();
         }
 
         public virtual TEntity Get(FilterDefinition<TEntity> filter)
