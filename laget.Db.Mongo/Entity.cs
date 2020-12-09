@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Newbody.Integration.Db.Mongo
+namespace laget.Db.Mongo
 {
     public class Entity
     {

@@ -1,8 +1,8 @@
 ﻿using System;
+using laget.Db.Mongo.Extensions;
 using MongoDB.Bson;
-using Newbody.Integration.Db.Mongo.Extensions;
 
-namespace Newbody.Integration.Db.Mongo.Tests.Models
+namespace laget.Db.Mongo.Tests.Models
 {
     [BsonCollection("tests")]
     public class TestModel : Entity

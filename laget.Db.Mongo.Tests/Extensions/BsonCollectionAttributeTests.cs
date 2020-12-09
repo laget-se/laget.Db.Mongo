@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newbody.Integration.Db.Mongo.Extensions;
+using laget.Db.Mongo.Extensions;
 using Xunit;
 
-namespace Newbody.Integration.Db.Mongo.Tests.Extensions
+namespace laget.Db.Mongo.Tests.Extensions
 {
     public class BsonCollectionAttributeTests
     {

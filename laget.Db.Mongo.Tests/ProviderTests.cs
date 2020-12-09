@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Xunit;
 
-namespace Newbody.Integration.Db.Mongo.Tests
+namespace laget.Db.Mongo.Tests
 {
     public class ProviderTests
     {

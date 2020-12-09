@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using laget.Db.Mongo.Extensions;
 using MongoDB.Driver;
-using Newbody.Integration.Db.Mongo.Extensions;
 
-namespace Newbody.Integration.Db.Mongo
+namespace laget.Db.Mongo
 {
     public interface IRepository<TEntity> where TEntity : Entity
     {

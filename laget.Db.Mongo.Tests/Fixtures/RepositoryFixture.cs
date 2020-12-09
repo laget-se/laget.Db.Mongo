@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Newbody.Integration.Db.Mongo.Tests.Fixtures
+namespace laget.Db.Mongo.Tests.Fixtures
 {
     public class RepositoryFixture<TEntity> : IDisposable where TEntity : Entity
     {

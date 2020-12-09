@@ -1,6 +1,6 @@
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
-namespace Newbody.Integration.Db.Mongo
+namespace laget.Db.Mongo
 {
     public interface IMongoDefaultProvider
     {

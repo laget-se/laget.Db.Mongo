@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using laget.Db.Mongo.Tests.Fixtures;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Moq;
-using Newbody.Integration.Db.Mongo.Tests.Fixtures;
 using Xunit;
 
-namespace Newbody.Integration.Db.Mongo.Tests
+namespace laget.Db.Mongo.Tests
 {
     public class RepositoryTests
     {

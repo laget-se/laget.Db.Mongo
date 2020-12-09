@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Newbody.Integration.Db.Mongo.Exceptions
+namespace laget.Db.Mongo.Exceptions
 {
     public class ReadOnlyRepositoryException : Exception
     {
