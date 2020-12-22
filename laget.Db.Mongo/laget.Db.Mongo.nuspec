@@ -19,10 +19,16 @@
         <dependency id="Microsoft.Extensions.Caching.Memory" version="5.0.0" />
         <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
       </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="MongoDB.Driver" version="2.11.5" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="5.0.0" />
+        <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
+      </group>
     </dependencies>
   </metadata>
   <files>
     <file src="..\assets\icon.png" target="assets\" />
     <file src=".\bin\Release\netstandard2.1\*" target="lib\netstandard2.1\" />
+    <file src=".\bin\Release\netstandard2.0\*" target="lib\netstandard2.0\" />
   </files>
 </package>
