@@ -18,3 +18,33 @@ public class UserRepository : Repository<Models.User>, IUserRepository
     }
 }
 ```
+
+### Caching
+```c#
+public interface IUserRepository : IRepository<Models.User>
+{
+}
+
+public class UserRepository : Repository<Models.User>, IUserRepository
+{
+    public UserRepository(string connectionString)
+        : base(connectionString)
+    {
+    }
+
+    public override Models.User Get(string id)
+    {
+        var cacheKey = "_Id_" + id;
+        var item = CacheGet<Models.User>(cacheKey);
+
+        if (item != null)
+            return item;
+
+        var result = Get(id);
+
+        CacheAdd(cacheKey, result);
+
+        return result;
+    }
+}
+```
