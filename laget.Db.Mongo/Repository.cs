@@ -49,7 +49,7 @@ namespace laget.Db.Mongo
 
         public Repository(IMongoDefaultProvider provider)
         {
-            Collection = provider.GetCollection<TEntity>(GetCollectionName());
+            Collection = provider.Collection<TEntity>(GetCollectionName());
             Cache = new MemoryCache(provider.CacheOptions);
         }
 

@@ -15,7 +15,7 @@ namespace laget.Db.Mongo.Tests
             var provider = new Mock<MongoDefaultProvider>(ConnectionString).Object;
 
             const string expected = "database";
-            var actual = provider.GetDatabase();
+            var actual = provider.Database;
 
             Assert.Equal(expected, actual.DatabaseNamespace.DatabaseName);
         }
@@ -26,7 +26,7 @@ namespace laget.Db.Mongo.Tests
             var provider = new Mock<MongoDefaultProvider>(ConnectionString).Object;
 
             const string expected = "collection";
-            var actual = provider.GetCollection<Models.TestModel>("collection");
+            var actual = provider.Collection<Models.TestModel>("collection");
 
             Assert.Equal(expected, actual.CollectionNamespace.CollectionName);
             Assert.Equal("database.collection", actual.CollectionNamespace.FullName);
@@ -47,7 +47,7 @@ namespace laget.Db.Mongo.Tests
             }).Object;
 
             const string expected = "collection";
-            var actual = provider.GetCollection<Models.TestModel>("collection");
+            var actual = provider.Collection<Models.TestModel>("collection");
 
             Assert.Equal(expected, actual.CollectionNamespace.CollectionName);
             Assert.Equal("database.collection", actual.CollectionNamespace.FullName);

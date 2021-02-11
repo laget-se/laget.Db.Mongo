@@ -7,14 +7,14 @@ namespace laget.Db.Mongo
     public interface IMongoDefaultProvider
     {
         MemoryCacheOptions CacheOptions { get; }
-        IMongoDatabase GetDatabase();
-        IMongoCollection<T> GetCollection<T>(string name);
+        IMongoDatabase Database { get; }
+        IMongoCollection<T> Collection<T>(string name);
     }
 
     public class MongoDefaultProvider : IMongoDefaultProvider
     {
         public MemoryCacheOptions CacheOptions { get; }
-        private readonly IMongoDatabase _database;
+        public IMongoDatabase Database { get; }
 
         public MongoDefaultProvider(string connectionString)
             : this(connectionString, new MongoDatabaseSettings
@@ -52,18 +52,10 @@ namespace laget.Db.Mongo
             var url = new MongoUrl(connectionString);
             var client = new MongoClient(url);
 
-            _database = client.GetDatabase(url.DatabaseName, settings);
             CacheOptions = cacheOptions;
+            Database = client.GetDatabase(url.DatabaseName, settings);
         }
 
-        public IMongoDatabase GetDatabase()
-        {
-            return _database;
-        }
-
-        public IMongoCollection<T> GetCollection<T>(string name)
-        {
-            return _database.GetCollection<T>(name);
-        }
+        public IMongoCollection<T> Collection<T>(string name) => Database.GetCollection<T>(name);
     }
 }
