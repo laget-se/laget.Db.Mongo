@@ -11,7 +11,7 @@ namespace laget.Db.Mongo.Tests
 {
     public class RepositoryTests
     {
-        readonly Mock<ITestRepository<Models.TestModel>> _repository;
+        private readonly Mock<ITestRepository<Models.TestModel>> _repository;
 
         public RepositoryTests()
         {

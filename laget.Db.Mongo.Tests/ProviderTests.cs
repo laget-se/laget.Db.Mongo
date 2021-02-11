@@ -5,10 +5,12 @@ namespace laget.Db.Mongo.Tests
 {
     public class ProviderTests
     {
+        private static string ConnectionString => "mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/database?authSource=admin";
+
         [Fact]
         public void ShouldReturnCorrectDatabaseName()
         {
-            var provider = new Mock<MongoDefaultProvider>(new object[] { "mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/database?authSource=admin" }).Object;
+            var provider = new Mock<MongoDefaultProvider>(ConnectionString).Object;
 
             const string expected = "database";
             var actual = provider.GetDatabase();
@@ -19,7 +21,7 @@ namespace laget.Db.Mongo.Tests
         [Fact]
         public void ShouldReturnCorrectCollection()
         {
-            var provider = new Mock<MongoDefaultProvider>(new object[] { "mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/database?authSource=admin" }).Object;
+            var provider = new Mock<MongoDefaultProvider>(ConnectionString).Object;
 
             const string expected = "collection";
             var actual = provider.GetCollection<Models.TestModel>("collection");

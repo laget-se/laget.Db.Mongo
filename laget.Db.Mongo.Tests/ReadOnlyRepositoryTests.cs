@@ -10,7 +10,7 @@ namespace laget.Db.Mongo.Tests
 {
     public class ReadOnlyRepositoryTests : IClassFixture<ReadOnlyRepositoryFixture<TestModel>>
     {
-        readonly ReadOnlyTestRepository<TestModel> _repository;
+        private readonly ReadOnlyTestRepository<TestModel> _repository;
 
         public ReadOnlyRepositoryTests(ReadOnlyRepositoryFixture<TestModel> fixture)
         {

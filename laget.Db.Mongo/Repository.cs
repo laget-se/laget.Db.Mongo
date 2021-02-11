@@ -50,11 +50,7 @@ namespace laget.Db.Mongo
         public Repository(IMongoDefaultProvider provider)
         {
             Collection = provider.GetCollection<TEntity>(GetCollectionName());
-
-            Cache = new MemoryCache(new MemoryCacheOptions
-            {
-                ExpirationScanFrequency = TimeSpan.FromMinutes(1)
-            });
+            Cache = new MemoryCache(provider.CacheOptions);
         }
 
         public virtual IEnumerable<TEntity> Find(FilterDefinition<TEntity> filter)
@@ -241,14 +237,14 @@ namespace laget.Db.Mongo
         }
 
 
-        static string GetCachePrefix()
+        private static string GetCachePrefix()
         {
             var attribute = (BsonCollectionAttribute)Attribute.GetCustomAttribute(typeof(TEntity), typeof(BsonCollectionAttribute));
 
             return attribute == null ? typeof(TEntity).Name : attribute.CachePrefix;
         }
 
-        static string GetCollectionName()
+        private static string GetCollectionName()
         {
             var attribute = (BsonCollectionAttribute)Attribute.GetCustomAttribute(typeof(TEntity), typeof(BsonCollectionAttribute));
 

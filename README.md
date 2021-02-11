@@ -1,4 +1,4 @@
-# laget.Db.Mongo
+﻿# laget.Db.Mongo
 A generic implementation of MongoDB, a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas.
 
 ![Nuget](https://img.shields.io/nuget/v/laget.Db.Mongo)
@@ -38,6 +38,17 @@ public interface IRepository<TEntity> where TEntity : Entity
     Task DeleteAsync(TEntity entity);
     void Delete(FilterDefinition<TEntity> filter);
     Task DeleteAsync(FilterDefinition<TEntity> filter);
+}
+```
+
+### Autofac
+```c#
+public class DatabaseModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.Register(c => new MongoDefaultProvider(c.Resolve<IConfiguration>().GetConnectionString("MongoConnectionString"))).As<IMongoDefaultProvider>().SingleInstance();
+    }
 }
 ```
 
