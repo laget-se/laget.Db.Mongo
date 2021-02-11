@@ -30,11 +30,21 @@ namespace laget.Db.Mongo
         }
 
         public MongoDefaultProvider(string connectionString, MongoDatabaseSettings settings)
+            : this(connectionString, settings, new MemoryCacheOptions
+            {
+                ExpirationScanFrequency = TimeSpan.FromMinutes(1)
+            })
         {
-            var url = new MongoUrl(connectionString);
-            var client = new MongoClient(url);
+        }
 
-            _database = client.GetDatabase(url.DatabaseName, settings);
+        public MongoDefaultProvider(string connectionString, MemoryCacheOptions cacheOptions)
+            : this(connectionString, new MongoDatabaseSettings
+            {
+                ReadConcern = ReadConcern.Default,
+                ReadPreference = ReadPreference.SecondaryPreferred,
+                WriteConcern = WriteConcern.W3
+            }, cacheOptions)
+        {
         }
 
         public MongoDefaultProvider(string connectionString, MongoDatabaseSettings settings, MemoryCacheOptions cacheOptions)
