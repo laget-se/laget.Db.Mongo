@@ -24,7 +24,7 @@ namespace laget.Db.Mongo
                 WriteConcern = WriteConcern.W3
             }, new MemoryCacheOptions
             {
-                ExpirationScanFrequency = TimeSpan.FromMinutes(1)
+                ExpirationScanFrequency = TimeSpan.FromMinutes(5)
             })
         {
         }
