@@ -51,6 +51,53 @@ public class DatabaseModule : Module
     }
 }
 ```
+```c#
+public class DatabaseModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.Register(c => new MongoDefaultProvider(c.Resolve<IConfiguration>().GetConnectionString("MongoConnectionString"), new MongoDatabaseSettings
+            {
+                ReadConcern = ReadConcern.Default,
+                ReadPreference = ReadPreference.SecondaryPreferred,
+                WriteConcern = WriteConcern.W3
+            })).As<IMongoDefaultProvider>().SingleInstance();
+    }
+}
+```
+```c#
+public class DatabaseModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.Register(c => new MongoDefaultProvider(c.Resolve<IConfiguration>().GetConnectionString("MongoConnectionString"), new MemoryCacheOptions
+            {
+                CompactionPercentage = 0.25,
+                ExpirationScanFrequency = TimeSpan.FromMinutes(5),
+                SizeLimit = 1024
+            })).As<IMongoDefaultProvider>().SingleInstance();
+    }
+}
+```
+```c#
+public class DatabaseModule : Module
+{
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.Register(c => new MongoDefaultProvider(c.Resolve<IConfiguration>().GetConnectionString("MongoConnectionString"), new MongoDatabaseSettings
+            {
+                ReadConcern = ReadConcern.Default,
+                ReadPreference = ReadPreference.SecondaryPreferred,
+                WriteConcern = WriteConcern.W3
+            }, new MemoryCacheOptions
+            {
+                CompactionPercentage = 0.25,
+                ExpirationScanFrequency = TimeSpan.FromMinutes(5),
+                SizeLimit = 1024
+            })).As<IMongoDefaultProvider>().SingleInstance();
+    }
+}
+```
 
 ### Generic
 ```c#

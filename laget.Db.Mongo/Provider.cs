@@ -32,7 +32,7 @@ namespace laget.Db.Mongo
         public MongoDefaultProvider(string connectionString, MongoDatabaseSettings settings)
             : this(connectionString, settings, new MemoryCacheOptions
             {
-                ExpirationScanFrequency = TimeSpan.FromMinutes(1)
+                ExpirationScanFrequency = TimeSpan.FromMinutes(5)
             })
         {
         }
