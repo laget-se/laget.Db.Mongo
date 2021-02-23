@@ -4,44 +4,8 @@ A generic implementation of MongoDB, a cross-platform document-oriented database
 ![Nuget](https://img.shields.io/nuget/v/laget.Db.Mongo)
 ![Nuget](https://img.shields.io/nuget/dt/laget.Db.Mongo)
 
-## Usage
-#### Built-in methods
-```c#
-public interface IRepository<TEntity> where TEntity : Entity
-{
-    IEnumerable<TEntity> Find(FilterDefinition<TEntity> filter);
-    Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filter);
-
-    TEntity Get(string id);
-    Task<TEntity> GetAsync(string id);
-    TEntity Get(FilterDefinition<TEntity> filter);
-    Task<TEntity> GetAsync(FilterDefinition<TEntity> filter);
-
-    void Insert(IEnumerable<TEntity> entities);
-    Task InsertAsync(IEnumerable<TEntity> entities);
-    void Insert(TEntity entity);
-    Task InsertAsync(TEntity entity);
-
-    void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
-    Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
-
-    void Upsert(IEnumerable<TEntity> entities);
-    Task UpsertAsync(IEnumerable<TEntity> entities);
-    void Upsert(TEntity entity);
-    Task UpsertAsync(TEntity entity);
-    void Upsert(FilterDefinition<TEntity> filter, TEntity entity);
-    Task UpsertAsync(FilterDefinition<TEntity> filter, TEntity entity);
-
-    void Delete(IEnumerable<TEntity> entities);
-    Task DeleteAsync(IEnumerable<TEntity> entities);
-    void Delete(TEntity entity);
-    Task DeleteAsync(TEntity entity);
-    void Delete(FilterDefinition<TEntity> filter);
-    Task DeleteAsync(FilterDefinition<TEntity> filter);
-}
-```
-
-### Autofac
+## Configuration
+> This example is shown using Autofac since this is the go-to IoC for us.
 ```c#
 public class DatabaseModule : Module
 {
@@ -96,6 +60,43 @@ public class DatabaseModule : Module
                 SizeLimit = 1024
             })).As<IMongoDefaultProvider>().SingleInstance();
     }
+}
+```
+
+## Usage
+#### Built-in methods
+```c#
+public interface IRepository<TEntity> where TEntity : Entity
+{
+    IEnumerable<TEntity> Find(FilterDefinition<TEntity> filter);
+    Task<IEnumerable<TEntity>> FindAsync(FilterDefinition<TEntity> filter);
+
+    TEntity Get(string id);
+    Task<TEntity> GetAsync(string id);
+    TEntity Get(FilterDefinition<TEntity> filter);
+    Task<TEntity> GetAsync(FilterDefinition<TEntity> filter);
+
+    void Insert(IEnumerable<TEntity> entities);
+    Task InsertAsync(IEnumerable<TEntity> entities);
+    void Insert(TEntity entity);
+    Task InsertAsync(TEntity entity);
+
+    void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
+    Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
+
+    void Upsert(IEnumerable<TEntity> entities);
+    Task UpsertAsync(IEnumerable<TEntity> entities);
+    void Upsert(TEntity entity);
+    Task UpsertAsync(TEntity entity);
+    void Upsert(FilterDefinition<TEntity> filter, TEntity entity);
+    Task UpsertAsync(FilterDefinition<TEntity> filter, TEntity entity);
+
+    void Delete(IEnumerable<TEntity> entities);
+    Task DeleteAsync(IEnumerable<TEntity> entities);
+    void Delete(TEntity entity);
+    Task DeleteAsync(TEntity entity);
+    void Delete(FilterDefinition<TEntity> filter);
+    Task DeleteAsync(FilterDefinition<TEntity> filter);
 }
 ```
 
