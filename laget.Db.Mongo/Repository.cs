@@ -236,6 +236,11 @@ namespace laget.Db.Mongo
             Cache.Set($"{CachePrefix}_{key}", item, options);
         }
 
+        protected void CacheRemove(string key)
+        {
+            Cache.Remove(key);
+        }
+
 
         private static string GetCachePrefix()
         {

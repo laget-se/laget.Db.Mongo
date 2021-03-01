@@ -64,6 +64,10 @@ public class DatabaseModule : Module
 ```
 
 ## Usage
+* `Repository`
+* `CachedRepository`
+* `ReadOnlyRepository`
+
 #### Built-in methods
 ```c#
 public interface IRepository<TEntity> where TEntity : Entity
