@@ -21,9 +21,11 @@ namespace laget.Db.Mongo
         Task InsertAsync(IEnumerable<TEntity> entities);
         void Insert(TEntity entity);
         Task InsertAsync(TEntity entity);
-
+        
         void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
         Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
+        void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
+        Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
 
         void Upsert(IEnumerable<TEntity> entities);
         Task UpsertAsync(IEnumerable<TEntity> entities);
@@ -115,6 +117,16 @@ namespace laget.Db.Mongo
         public virtual async Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)
         {
             await Collection.UpdateOneAsync(filter, update, options);
+        }
+
+        public virtual void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)
+        {
+            Collection.UpdateMany(filter, update, options);
+        }
+
+        public virtual async Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)
+        {
+            await Collection.UpdateManyAsync(filter, update, options);
         }
 
         public virtual void Upsert(IEnumerable<TEntity> entities)

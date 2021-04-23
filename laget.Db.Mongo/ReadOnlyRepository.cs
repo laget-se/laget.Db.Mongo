@@ -42,6 +42,16 @@ namespace laget.Db.Mongo
             throw new ReadOnlyException();
         }
 
+        public override void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)
+        {
+            throw new ReadOnlyException();
+        }
+
+        public override Task UpdateManyAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options)
+        {
+            throw new ReadOnlyException();
+        }
+
         public override void Upsert(IEnumerable<TEntity> entities)
         {
             throw new ReadOnlyException();

@@ -82,6 +82,28 @@ namespace laget.Db.Mongo.Tests
         }
 
         [Fact]
+        public void ShouldThrowExceptionOnUpdateMany()
+        {
+            var options = new UpdateOptions();
+            var filter = Builders<TestModel>.Filter.Eq(x => x.Id, "test");
+            var update = Builders<TestModel>.Update.Set(x => x.Field1, "124");
+
+            var exception = Assert.Throws<ReadOnlyException>(() => _repository.UpdateMany(filter, update, options));
+            Assert.Equal($"We're not allowing writes to a read-only repository", exception.Message);
+        }
+
+        [Fact]
+        public async Task ShouldThrowExceptionOnUpdateManyAsync()
+        {
+            var options = new UpdateOptions();
+            var filter = Builders<TestModel>.Filter.Eq(x => x.Id, "test");
+            var update = Builders<TestModel>.Update.Set(x => x.Field1, "124");
+
+            var exception = await Assert.ThrowsAsync<ReadOnlyException>(() => _repository.UpdateManyAsync(filter, update, options));
+            Assert.Equal("We're not allowing writes to a read-only repository", exception.Message);
+        }
+
+        [Fact]
         public void ShouldThrowExceptionOnEmptyListUpsert()
         {
             var exception = Assert.Throws<ReadOnlyException>(() => _repository.Upsert(new List<TestModel>()));
