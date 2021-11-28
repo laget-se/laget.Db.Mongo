@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using laget.Db.Mongo.Extensions;
-using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Driver;
 
 namespace laget.Db.Mongo
@@ -21,7 +20,7 @@ namespace laget.Db.Mongo
         Task InsertAsync(IEnumerable<TEntity> entities);
         void Insert(TEntity entity);
         Task InsertAsync(TEntity entity);
-        
+
         void Update(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
         Task UpdateAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
         void UpdateMany(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update, UpdateOptions options);
@@ -44,15 +43,11 @@ namespace laget.Db.Mongo
 
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        protected readonly IMemoryCache Cache;
         protected readonly IMongoCollection<TEntity> Collection;
-
-        protected string CachePrefix => GetCachePrefix();
 
         public Repository(IMongoDefaultProvider provider)
         {
             Collection = provider.Collection<TEntity>(GetCollectionName());
-            Cache = new MemoryCache(provider.CacheOptions);
         }
 
         public virtual IEnumerable<TEntity> Find(FilterDefinition<TEntity> filter)
@@ -227,34 +222,6 @@ namespace laget.Db.Mongo
             await Collection.DeleteManyAsync(filter);
         }
 
-
-        protected TZ CacheGet<TZ>(string key)
-        {
-            return Cache.Get<TZ>($"{CachePrefix}_{key}");
-        }
-
-        protected void CacheAdd<TZ>(string key, TZ item, MemoryCacheEntryOptions options = null)
-        {
-            if (options == null)
-            {
-                options = new MemoryCacheEntryOptions
-                {
-                    AbsoluteExpiration = DateTime.Now.AddMinutes(15),
-                    Priority = CacheItemPriority.High,
-                    SlidingExpiration = TimeSpan.FromMinutes(5)
-                };
-            }
-
-            Cache.Set($"{CachePrefix}_{key}", item, options);
-        }
-
-
-        private static string GetCachePrefix()
-        {
-            var attribute = (BsonCollectionAttribute)Attribute.GetCustomAttribute(typeof(TEntity), typeof(BsonCollectionAttribute));
-
-            return attribute == null ? typeof(TEntity).Name : attribute.CachePrefix;
-        }
 
         private static string GetCollectionName()
         {
