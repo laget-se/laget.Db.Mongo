@@ -11,8 +11,8 @@ namespace laget.Db.Mongo
 
 
         [BsonElement("createdAt"), BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public virtual DateTime CreatedAt { get; set; } = DateTime.Now;
         [BsonElement("updatedAt"), BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public virtual DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }
