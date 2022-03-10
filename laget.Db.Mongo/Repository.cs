@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using laget.Db.Mongo.Extensions;
+﻿using laget.Db.Mongo.Extensions;
 using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace laget.Db.Mongo
 {
@@ -44,7 +44,7 @@ namespace laget.Db.Mongo
 
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        protected readonly IMemoryCache Cache;
+        protected readonly IMemoryCache Cache = new MemoryCache(new MemoryCacheOptions());
         protected readonly IMongoCollection<TEntity> Collection;
 
         public Repository(IMongoDefaultProvider provider)
