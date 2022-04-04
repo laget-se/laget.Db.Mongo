@@ -15,13 +15,13 @@
     <repository type="git" url="https://github.com/laget-se/laget.Db.Mongo" branch="master" />
     <dependencies>
       <group targetFramework="netstandard2.1">
-        <dependency id="MongoDB.Driver" version="2.14.1" />
-        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.0" />
+        <dependency id="MongoDB.Driver" version="2.15.0" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.1" />
         <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="MongoDB.Driver" version="2.14.1" />
-        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.0" />
+        <dependency id="MongoDB.Driver" version="2.15.0" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.1" />
         <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
       </group>
     </dependencies>
