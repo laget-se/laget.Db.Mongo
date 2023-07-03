@@ -1,9 +1,6 @@
-name: Publish
+﻿name: Publish
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch: {}
 
 jobs:
@@ -44,7 +41,7 @@ jobs:
       uses: laget-se/publish-nuget@v2.7.2
       with:
         INCLUDE_SYMBOLS: true
-        PROJECT_FILE_PATH: laget.Db.Mongo/laget.Db.Mongo.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
         NUSPEC_FILE: laget.Db.Mongo.nuspec
+        PROJECT_FILE_PATH: laget.Db.Mongo/laget.Db.Mongo.csproj
         VERSION_STATIC: "1.2.${{github.run_number}}"
