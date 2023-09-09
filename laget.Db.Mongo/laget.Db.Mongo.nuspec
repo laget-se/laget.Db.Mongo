@@ -4,7 +4,7 @@
     <id>laget.Db.Mongo</id>
     <title>laget.Db.Mongo</title>
     <version>$version$</version>
-    <authors>gonace,laget.se</authors>
+    <authors>laget.se</authors>
     <owners>laget.se</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A generic implementation of MongoDB, a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas....</description>
