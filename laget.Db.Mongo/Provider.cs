@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Driver;
+using System;
 
 namespace laget.Db.Mongo
 {
@@ -43,17 +43,18 @@ namespace laget.Db.Mongo
                 ReadConcern = ReadConcern.Default,
                 ReadPreference = ReadPreference.SecondaryPreferred,
                 WriteConcern = WriteConcern.W3
-            }, cacheOptions)
+            },
+            cacheOptions)
         {
         }
 
-        public MongoDefaultProvider(string connectionString, MongoDatabaseSettings settings, MemoryCacheOptions cacheOptions)
+        public MongoDefaultProvider(string connectionString, MongoDatabaseSettings databaseSettings, MemoryCacheOptions cacheOptions)
         {
             var url = new MongoUrl(connectionString);
             var client = new MongoClient(url);
 
             CacheOptions = cacheOptions;
-            Database = client.GetDatabase(url.DatabaseName, settings);
+            Database = client.GetDatabase(url.DatabaseName, databaseSettings);
         }
 
         public IMongoCollection<T> Collection<T>(string name) => Database.GetCollection<T>(name);
